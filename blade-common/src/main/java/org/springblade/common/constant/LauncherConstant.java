@@ -17,47 +17,47 @@ public interface LauncherConstant {
 	/**
 	 * nacos dev 地址
 	 */
-	String NACOS_DEV_ADDR = "127.0.0.1:8848";
+	String NACOS_DEV_ADDR = "nacos:8848";
 
 	/**
 	 * nacos prod 地址
 	 */
-	String NACOS_PROD_ADDR = "172.30.0.48:8848";
+	String NACOS_PROD_ADDR = "nacos:8848";
 
 	/**
 	 * nacos test 地址
 	 */
-	String NACOS_TEST_ADDR = "172.30.0.48:8848";
+	String NACOS_TEST_ADDR = "nacos:8848";
 
 	/**
 	 * sentinel dev 地址
 	 */
-	String SENTINEL_DEV_ADDR = "127.0.0.1:8858";
+	String SENTINEL_DEV_ADDR = "sentinel:8858";
 
 	/**
 	 * sentinel prod 地址
 	 */
-	String SENTINEL_PROD_ADDR = "172.30.0.58:8858";
+	String SENTINEL_PROD_ADDR = "sentinel:8858";
 
 	/**
 	 * sentinel test 地址
 	 */
-	String SENTINEL_TEST_ADDR = "172.30.0.58:8858";
+	String SENTINEL_TEST_ADDR = "sentinel:8858";
 
 	/**
 	 * zipkin dev 地址
 	 */
-	String ZIPKIN_DEV_ADDR = "http://127.0.0.1:9411";
+	String ZIPKIN_DEV_ADDR = "http://zipkin:9411";
 
 	/**
 	 * zipkin prod 地址
 	 */
-	String ZIPKIN_PROD_ADDR = "http://172.30.0.58:9411";
+	String ZIPKIN_PROD_ADDR = "http://zipkin:9411";
 
 	/**
 	 * zipkin test 地址
 	 */
-	String ZIPKIN_TEST_ADDR = "http://172.30.0.58:9411";
+	String ZIPKIN_TEST_ADDR = "http://zipkin:9411";
 
 	/**
 	 * 动态获取nacos地址

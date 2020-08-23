@@ -5,14 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.springblade</groupId>
+        <groupId>com.snailscoder</groupId>
         <artifactId>SpringBlade</artifactId>
-        <version>2.7.2</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>blade-service</artifactId>
     <name>${project.artifactId}</name>
-    <version>2.7.2</version>
     <packaging>pom</packaging>
     <description>SpringBlade 微服务集合</description>
 
@@ -21,12 +20,11 @@
         <module>blade-log</module>
         <module>blade-system</module>
         <module>blade-user</module>
-        <module>blade-demo</module>
     </modules>
 
     <dependencies>
         <dependency>
-            <groupId>org.springblade</groupId>
+            <groupId>com.snailscoder</groupId>
             <artifactId>blade-common</artifactId>
             <version>${blade.project.version}</version>
         </dependency>
@@ -53,6 +51,26 @@
                     <serverId>${docker.registry.url}</serverId>
                     <pushImage>true</pushImage>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <!--suppress UnresolvedMavenProperty -->
+                                <copy overwrite="true"
+                                      tofile="${session.executionRootDirectory}/target/${project.artifactId}.jar"
+                                      file="${project.build.directory}/${project.artifactId}.jar" />
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

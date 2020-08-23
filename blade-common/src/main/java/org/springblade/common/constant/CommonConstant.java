@@ -33,4 +33,8 @@ public interface CommonConstant {
 	 */
 	String DEFAULT_PASSWORD = "123456";
 
+	/**
+	 * 基础包
+	 */
+	String BASE_PACKAGES = "com.snailscoder";
 }

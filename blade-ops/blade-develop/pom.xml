@@ -4,16 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
-        <groupId>org.springblade</groupId>
+        <groupId>com.snailscoder</groupId>
         <artifactId>blade-ops</artifactId>
-        <version>2.7.2</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>blade-develop</artifactId>
     <name>${project.artifactId}</name>
-    <version>${blade.project.version}</version>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -24,7 +22,7 @@
             <version>${blade.tool.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.springblade</groupId>
+            <groupId>com.snailscoder</groupId>
             <artifactId>blade-common</artifactId>
             <version>${blade.project.version}</version>
         </dependency>
@@ -51,7 +49,7 @@
             <version>${swagger.models.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.springblade</groupId>
+            <groupId>com.snailscoder</groupId>
             <artifactId>blade-dict-api</artifactId>
             <version>${blade.project.version}</version>
         </dependency>
@@ -80,8 +78,8 @@
                             <tasks>
                                 <!--suppress UnresolvedMavenProperty -->
                                 <copy overwrite="true"
-                                      tofile="${session.executionRootDirectory}/target/${artifactId}.jar"
-                                      file="${project.build.directory}/${artifactId}.jar" />
+                                      tofile="${session.executionRootDirectory}/target/${project.artifactId}.jar"
+                                      file="${project.build.directory}/${project.artifactId}.jar" />
                             </tasks>
                         </configuration>
                     </execution>

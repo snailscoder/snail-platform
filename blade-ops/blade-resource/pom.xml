@@ -4,19 +4,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>blade-ops</artifactId>
-        <groupId>org.springblade</groupId>
-        <version>2.7.2</version>
+        <groupId>com.snailscoder</groupId>
+        <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>blade-resource</artifactId>
     <name>${project.artifactId}</name>
-    <version>${blade.project.version}</version>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>org.springblade</groupId>
+            <groupId>com.snailscoder</groupId>
             <artifactId>blade-common</artifactId>
             <version>${blade.project.version}</version>
         </dependency>
@@ -78,8 +77,8 @@
                             <tasks>
                                 <!--suppress UnresolvedMavenProperty -->
                                 <copy overwrite="true"
-                                      tofile="${session.executionRootDirectory}/target/${artifactId}.jar"
-                                      file="${project.build.directory}/${artifactId}.jar" />
+                                      tofile="${session.executionRootDirectory}/target/${project.artifactId}.jar"
+                                      file="${project.build.directory}/${project.artifactId}.jar" />
                             </tasks>
                         </configuration>
                     </execution>
