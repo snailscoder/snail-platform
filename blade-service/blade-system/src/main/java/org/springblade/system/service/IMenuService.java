@@ -16,7 +16,7 @@
 package org.springblade.system.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.service.IService;
+import com.snailscoder.core.mybatis.base.BaseService;
 import org.springblade.core.secure.BladeUser;
 import org.springblade.core.tool.support.Kv;
 import org.springblade.system.entity.Menu;
@@ -29,7 +29,7 @@ import java.util.List;
  *
  * @author Chill
  */
-public interface IMenuService extends IService<Menu> {
+public interface IMenuService extends BaseService<Menu> {
 
 	/**
 	 * 自定义分页

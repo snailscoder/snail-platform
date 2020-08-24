@@ -17,7 +17,7 @@ package org.springblade.system.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.snailscoder.core.mybatis.base.BaseServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springblade.core.secure.BladeUser;
 import org.springblade.core.tool.constant.BladeConstant;
@@ -45,7 +45,7 @@ import java.util.stream.Collectors;
  */
 @Service
 @AllArgsConstructor
-public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IMenuService {
+public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implements IMenuService {
 
 	IRoleMenuService roleMenuService;
 

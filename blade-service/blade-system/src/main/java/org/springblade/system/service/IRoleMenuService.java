@@ -15,7 +15,7 @@
  */
 package org.springblade.system.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
+import com.snailscoder.core.mybatis.base.BaseService;
 import org.springblade.system.entity.RoleMenu;
 
 /**
@@ -23,6 +23,6 @@ import org.springblade.system.entity.RoleMenu;
  *
  * @author Chill
  */
-public interface IRoleMenuService extends IService<RoleMenu> {
+public interface IRoleMenuService extends BaseService<RoleMenu> {
 
 }

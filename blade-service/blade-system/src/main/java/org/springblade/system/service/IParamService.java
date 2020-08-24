@@ -16,7 +16,7 @@
 package org.springblade.system.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import org.springblade.core.mp.base.BaseService;
+import com.snailscoder.core.mybatis.base.BaseService;
 import org.springblade.system.entity.Param;
 import org.springblade.system.vo.ParamVO;
 

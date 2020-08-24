@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.snailscoder.store.mapper.ProductMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="productResultMap" type="com.snailscoder.store.entity.Product">
+        <id column="id" property="id"/>
+        <result column="store_id" property="storeId"/>
+        <result column="name" property="name"/>
+        <result column="agent_price" property="agentPrice"/>
+        <result column="retail_price" property="retailPrice"/>
+        <result column="main_img" property="mainImg"/>
+        <result column="intro" property="intro"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="status" property="status"/>
+        <result column="is_deleted" property="isDeleted"/>
+    </resultMap>
+
+
+    <select id="selectProductPage" resultMap="productResultMap">
+        select * from snails_product where is_deleted = 0
+    </select>
+
+</mapper>

@@ -17,9 +17,9 @@ package org.springblade.system.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.snailscoder.core.mybatis.base.BaseServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springblade.core.boot.tenant.TenantId;
-import org.springblade.core.mp.base.BaseServiceImpl;
 import org.springblade.core.tool.constant.BladeConstant;
 import org.springblade.core.tool.utils.Func;
 import org.springblade.system.entity.Dept;

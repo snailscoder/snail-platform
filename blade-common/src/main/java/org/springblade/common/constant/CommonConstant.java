@@ -1,5 +1,7 @@
 package org.springblade.common.constant;
 
+import org.springblade.core.launch.constant.AppConstant;
+
 /**
  * 通用常量
  *
@@ -37,4 +39,10 @@ public interface CommonConstant {
 	 * 基础包
 	 */
 	String BASE_PACKAGES = "com.snailscoder";
+
+	/**
+	 * 商品模块名称
+	 */
+	String APPLICATION_STORE_NAME = AppConstant.APPLICATION_NAME_PREFIX + "store";
+
 }

@@ -17,7 +17,7 @@ package org.springblade.system.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.snailscoder.core.mybatis.base.BaseServiceImpl;
 import org.springblade.core.tool.node.ForestNodeMerger;
 import org.springblade.core.tool.utils.Func;
 import org.springblade.system.entity.Dept;
@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
  * @author Chill
  */
 @Service
-public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements IDeptService {
+public class DeptServiceImpl extends BaseServiceImpl<DeptMapper, Dept> implements IDeptService {
 
 	@Override
 	public IPage<DeptVO> selectDeptPage(IPage<DeptVO> page, DeptVO dept) {

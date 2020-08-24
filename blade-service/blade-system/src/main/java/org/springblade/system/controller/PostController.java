@@ -23,6 +23,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
 import org.springblade.core.boot.ctrl.BladeController;
+import org.springblade.core.boot.tenant.BladeTenantProperties;
 import org.springblade.core.mp.support.Condition;
 import org.springblade.core.mp.support.Query;
 import org.springblade.core.secure.BladeUser;
@@ -49,6 +50,7 @@ import java.util.List;
 public class PostController extends BladeController {
 
 	private IPostService postService;
+	private BladeTenantProperties bladeTenantProperties;
 
 	/**
 	 * 详情
@@ -56,8 +58,8 @@ public class PostController extends BladeController {
 	@GetMapping("/detail")
 	@ApiOperationSupport(order = 1)
 	@ApiOperation(value = "详情", notes = "传入post")
-	public R<PostVO> detail(Post post) {
-		Post detail = postService.getOne(Condition.getQueryWrapper(post));
+	public R<PostVO> detail(Long id) {
+		Post detail = postService.getById(id);
 		return R.data(PostWrapper.build().entityVO(detail));
 	}
 
@@ -68,6 +70,7 @@ public class PostController extends BladeController {
 	@ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入post")
 	public R<IPage<PostVO>> list(Post post, Query query) {
+		bladeTenantProperties.getBladeTables().forEach(key-> System.out.println(key));
 		IPage<Post> pages = postService.page(Condition.getPage(query), Condition.getQueryWrapper(post));
 		return R.data(PostWrapper.build().pageVO(pages));
 	}

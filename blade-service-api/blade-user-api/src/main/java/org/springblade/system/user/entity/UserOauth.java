@@ -15,15 +15,10 @@
  */
 package org.springblade.system.user.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import com.snailscoder.core.mybatis.base.TenantEntity;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-
-import java.io.Serializable;
 
 /**
  * 实体类
@@ -32,23 +27,9 @@ import java.io.Serializable;
  */
 @Data
 @TableName("blade_user_oauth")
-public class UserOauth implements Serializable {
+public class UserOauth extends TenantEntity {
 
 	private static final long serialVersionUID = 1L;
-
-
-	/**
-	 * 主键
-	 */
-	@JsonSerialize(using = ToStringSerializer.class)
-	@ApiModelProperty(value = "主键")
-	@TableId(value = "id", type = IdType.ASSIGN_ID)
-	private Long id;
-
-	/**
-	 * 租户ID
-	 */
-	private String tenantId;
 
 	/**
 	 * 第三方系统用户ID
@@ -58,9 +39,16 @@ public class UserOauth implements Serializable {
 	/**
 	 * 用户ID
 	 */
-	@JsonSerialize(using = ToStringSerializer.class)
 	@ApiModelProperty(value = "用户主键")
 	private Long userId;
+
+	@ApiModelProperty(value = "微信unionId")
+	private String unionId;
+
+	/**
+	 * 所属店铺
+	 */
+	private Long storeId;
 
 	/**
 	 * 用户名

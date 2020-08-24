@@ -20,11 +20,11 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import com.snailscoder.core.mybatis.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springblade.core.mp.base.BaseEntity;
 
 /**
  * 实体类
@@ -38,14 +38,6 @@ import org.springblade.core.mp.base.BaseEntity;
 public class Tenant extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * 主键id
-	 */
-	@ApiModelProperty(value = "主键")
-	@TableId(value = "id", type = IdType.ASSIGN_ID)
-	@JsonSerialize(using = ToStringSerializer.class)
-	private Long id;
 
 	/**
 	 * 租户ID

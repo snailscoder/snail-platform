@@ -17,6 +17,7 @@ package org.springblade.system.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.snailscoder.core.mybatis.base.BaseService;
 import org.springblade.system.entity.Dict;
 import org.springblade.system.vo.DictVO;
 
@@ -27,7 +28,7 @@ import java.util.List;
  *
  * @author Chill
  */
-public interface IDictService extends IService<Dict> {
+public interface IDictService extends BaseService<Dict> {
 
 	/**
 	 * 自定义分页

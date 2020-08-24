@@ -16,8 +16,6 @@
 package org.springblade.system.vo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -37,18 +35,6 @@ import java.util.List;
 @ApiModel(value = "DeptVO对象", description = "DeptVO对象")
 public class DeptVO extends Dept implements INode {
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * 主键ID
-	 */
-	@JsonSerialize(using = ToStringSerializer.class)
-	private Long id;
-
-	/**
-	 * 父节点ID
-	 */
-	@JsonSerialize(using = ToStringSerializer.class)
-	private Long parentId;
 
 	/**
 	 * 子孙节点

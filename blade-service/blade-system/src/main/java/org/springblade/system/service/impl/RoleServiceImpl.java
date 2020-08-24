@@ -18,6 +18,7 @@ package org.springblade.system.service.impl;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.snailscoder.core.mybatis.base.BaseServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springblade.core.secure.utils.SecureUtil;
 import org.springblade.core.tool.constant.RoleConstant;
@@ -46,7 +47,7 @@ import java.util.stream.Collectors;
 @Service
 @Validated
 @AllArgsConstructor
-public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IRoleService {
+public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, Role> implements IRoleService {
 
 	IRoleMenuService roleMenuService;
 

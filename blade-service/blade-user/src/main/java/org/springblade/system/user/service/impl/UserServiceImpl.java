@@ -17,14 +17,16 @@ package org.springblade.system.user.service.impl;
 
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.exceptions.ApiException;
+import com.snailscoder.core.mybatis.base.BaseServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springblade.common.constant.CommonConstant;
 import org.springblade.core.log.exception.ServiceException;
-import org.springblade.core.mp.base.BaseServiceImpl;
 import org.springblade.core.tool.api.R;
+import org.springblade.core.tool.constant.BladeConstant;
 import org.springblade.core.tool.utils.*;
 import org.springblade.system.entity.Tenant;
 import org.springblade.system.feign.ISysClient;
@@ -38,6 +40,7 @@ import org.springblade.system.user.service.IUserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -88,7 +91,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
 	@Override
 	public UserInfo userInfo(String tenantId, String account, String password) {
 		UserInfo userInfo = new UserInfo();
-		User user = baseMapper.getUser(tenantId, account, password);
+		User user = this.getUser(tenantId,account, password);
 		userInfo.setUser(user);
 		if (Func.isNotEmpty(user)) {
 			List<String> roleAlias = baseMapper.getRoleAlias(Func.toStrArray(user.getRoleId()));
@@ -97,10 +100,34 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
 		return userInfo;
 	}
 
+	/**
+	 * 根据账号密码查询用户
+	 * @param account
+	 * @param password
+	 * @return
+	 */
+	private User getUser(String tenantId, String account, String password){
+		LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
+		if(!BladeConstant.ADMIN_TENANT_ID.equals(tenantId)){
+			wrapper.eq(User::getTenantId,tenantId);
+		}
+		wrapper.eq(User::getAccount,account);
+		wrapper.eq(User::getPassword,password);
+		return this.getOne(wrapper);
+	}
+
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public UserInfo userInfo(UserOauth userOauth) {
 		UserOauth uo = userOauthService.getOne(Wrappers.<UserOauth>query().lambda().eq(UserOauth::getUuid, userOauth.getUuid()).eq(UserOauth::getSource, userOauth.getSource()));
+		if(Func.isEmpty(uo) && Func.isNotEmpty(userOauth.getUnionId())){
+			UserOauth unionUo = userOauthService.getOne(Wrappers.<UserOauth>query().lambda().eq(UserOauth::getUnionId, userOauth.getUnionId()));
+			if(Func.isNotEmpty(unionUo)){
+				userOauth.setUserId(unionUo.getUserId());
+				userOauthService.save(userOauth);
+				uo = userOauth;
+			}
+		}
 		UserInfo userInfo;
 		if (Func.isNotEmpty(uo) && Func.isNotEmpty(uo.getUserId())) {
 			userInfo = this.userInfo(uo.getUserId());
@@ -132,7 +159,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
 	public boolean resetPassword(String userIds) {
 		User user = new User();
 		user.setPassword(DigestUtil.encrypt(CommonConstant.DEFAULT_PASSWORD));
-		user.setUpdateTime(DateUtil.now());
+		user.setUpdateTime(LocalDateTime.now());
 		return this.update(user, Wrappers.<User>update().lambda().in(User::getId, Func.toLongList(userIds)));
 	}
 

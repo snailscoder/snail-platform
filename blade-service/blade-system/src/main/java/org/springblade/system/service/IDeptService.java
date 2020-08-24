@@ -16,7 +16,7 @@
 package org.springblade.system.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.service.IService;
+import com.snailscoder.core.mybatis.base.BaseService;
 import org.springblade.system.entity.Dept;
 import org.springblade.system.vo.DeptVO;
 
@@ -27,7 +27,7 @@ import java.util.List;
  *
  * @author Chill
  */
-public interface IDeptService extends IService<Dept> {
+public interface IDeptService extends BaseService<Dept> {
 
 	/**
 	 * 自定义分页

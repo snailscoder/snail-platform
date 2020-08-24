@@ -83,6 +83,7 @@ public class SocialTokenGranter implements ITokenGranter {
 		userOauth.setSource(authUser.getSource());
 		userOauth.setTenantId(tenantId);
 		userOauth.setUuid(authUser.getUuid());
+		userOauth.setUnionId(authUser.getToken().getUnionId());
 		// 远程调用，获取认证信息
 		R<UserInfo> result = userClient.userAuthInfo(userOauth);
 		return result.getData();

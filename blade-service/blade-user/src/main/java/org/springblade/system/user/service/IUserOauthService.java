@@ -16,7 +16,7 @@
 package org.springblade.system.user.service;
 
 
-import com.baomidou.mybatisplus.extension.service.IService;
+import com.snailscoder.core.mybatis.base.BaseService;
 import org.springblade.system.user.entity.UserOauth;
 
 /**
@@ -24,6 +24,6 @@ import org.springblade.system.user.entity.UserOauth;
  *
  * @author Chill
  */
-public interface IUserOauthService extends IService<UserOauth> {
+public interface IUserOauthService extends BaseService<UserOauth> {
 
 }

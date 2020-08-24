@@ -17,7 +17,7 @@ package org.springblade.system.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import org.springblade.core.mp.base.BaseServiceImpl;
+import com.snailscoder.core.mybatis.base.BaseServiceImpl;
 import org.springblade.core.tool.utils.Func;
 import org.springblade.system.entity.Post;
 import org.springblade.system.mapper.PostMapper;

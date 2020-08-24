@@ -1,0 +1,10 @@
+#服务器端口
+server:
+  port: 8200
+
+#数据源配置
+spring:
+  datasource:
+    url: ${snails.datasource.url}
+    username: ${snails.datasource.username}
+    password: ${snails.datasource.password}

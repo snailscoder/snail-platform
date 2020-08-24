@@ -15,15 +15,10 @@
  */
 package org.springblade.system.user.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
-import io.swagger.annotations.ApiModelProperty;
+import com.snailscoder.core.mybatis.base.TenantEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springblade.core.mp.base.TenantEntity;
 
 import java.util.Date;
 
@@ -40,14 +35,9 @@ public class User extends TenantEntity {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * 主键id
+	 * 所属店铺
 	 */
-	@ApiModelProperty(value = "主键")
-	@TableId(value = "id", type = IdType.ASSIGN_ID)
-	@JsonSerialize(using = ToStringSerializer.class)
-	private Long id;
-
-
+	private Long storeId;
 	/**
 	 * 编号
 	 */

@@ -19,7 +19,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.exceptions.ApiException;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.snailscoder.core.mybatis.base.BaseServiceImpl;
 import org.springblade.core.tool.node.ForestNodeMerger;
 import org.springblade.core.tool.utils.Func;
 import org.springblade.core.tool.utils.StringPool;
@@ -42,7 +42,7 @@ import static org.springblade.common.cache.CacheNames.DICT_VALUE;
  * @author Chill
  */
 @Service
-public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements IDictService {
+public class DictServiceImpl extends BaseServiceImpl<DictMapper, Dict> implements IDictService {
 
 	@Override
 	public IPage<DictVO> selectDictPage(IPage<DictVO> page, DictVO dict) {

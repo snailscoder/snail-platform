@@ -15,16 +15,12 @@
  */
 package org.springblade.system.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import com.snailscoder.core.mybatis.base.TenantEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springblade.core.mp.base.TenantEntity;
 
 /**
  * 岗位表实体类
@@ -36,17 +32,7 @@ import org.springblade.core.mp.base.TenantEntity;
 @EqualsAndHashCode(callSuper = true)
 @ApiModel(value = "Post对象", description = "岗位表")
 public class Post extends TenantEntity {
-
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * 主键id
-	 */
-	@ApiModelProperty(value = "主键")
-	@TableId(value = "id", type = IdType.ASSIGN_ID)
-	@JsonSerialize(using = ToStringSerializer.class)
-	private Long id;
-
 	/**
 	 * 类型
 	 */
@@ -72,6 +58,4 @@ public class Post extends TenantEntity {
 	 */
 	@ApiModelProperty(value = "岗位描述")
 	private String remark;
-
-
 }

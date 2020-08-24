@@ -16,7 +16,7 @@
 package org.springblade.system.user.service.impl;
 
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.snailscoder.core.mybatis.base.BaseServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springblade.system.user.entity.UserOauth;
 import org.springblade.system.user.mapper.UserOauthMapper;
@@ -30,6 +30,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @AllArgsConstructor
-public class UserOauthServiceImpl extends ServiceImpl<UserOauthMapper, UserOauth> implements IUserOauthService {
+public class UserOauthServiceImpl extends BaseServiceImpl<UserOauthMapper, UserOauth> implements IUserOauthService {
 
 }

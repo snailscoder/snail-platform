@@ -15,16 +15,13 @@
  */
 package org.springblade.system.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import com.snailscoder.core.mybatis.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-
-import java.io.Serializable;
 
 /**
  * 实体类
@@ -34,17 +31,9 @@ import java.io.Serializable;
 @Data
 @TableName("blade_role_menu")
 @ApiModel(value = "RoleMenu对象", description = "RoleMenu对象")
-public class RoleMenu implements Serializable {
+public class RoleMenu extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * 主键
-	 */
-	@ApiModelProperty(value = "主键")
-	@TableId(value = "id", type = IdType.ASSIGN_ID)
-	@JsonSerialize(using = ToStringSerializer.class)
-	private Long id;
 
 	/**
 	 * 菜单id

@@ -16,7 +16,7 @@
 package org.springblade.system.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.service.IService;
+import com.snailscoder.core.mybatis.base.BaseService;
 import org.springblade.system.entity.Role;
 import org.springblade.system.vo.RoleVO;
 
@@ -28,7 +28,7 @@ import java.util.List;
  *
  * @author Chill
  */
-public interface IRoleService extends IService<Role> {
+public interface IRoleService extends BaseService<Role> {
 
 	/**
 	 * 自定义分页

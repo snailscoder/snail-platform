@@ -107,6 +107,17 @@ public class UserController {
 	}
 
 	/**
+	 * 下拉数据源
+	 */
+	@GetMapping("/select")
+	@ApiOperation(value = "下拉数据源", notes = "传入tenant")
+	public R<List<User>> select(User user, BladeUser bladeUser) {
+		QueryWrapper<User> queryWrapper = Condition.getQueryWrapper(user);
+		Query query = new Query().setCurrent(1).setSize(100);
+		IPage<User> pages = userService.page(Condition.getPage(query), (!bladeUser.getTenantId().equals(BladeConstant.ADMIN_TENANT_ID)) ? queryWrapper.lambda().eq(User::getTenantId, bladeUser.getTenantId()) : queryWrapper);
+		return R.data(pages.getRecords());
+	}
+	/**
 	 * 新增或修改
 	 */
 	@PostMapping("/submit")

@@ -19,13 +19,14 @@
         <module>blade-dict-api</module>
         <module>blade-system-api</module>
         <module>blade-user-api</module>
+        <module>blade-store-api</module>
     </modules>
 
     <dependencies>
         <dependency>
-            <groupId>org.springblade</groupId>
+            <groupId>com.snailscoder</groupId>
             <artifactId>blade-core-mybatis</artifactId>
-            <version>${blade.tool.version}</version>
+            <version>${blade.project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>

@@ -15,7 +15,7 @@
  */
 package org.springblade.system.service;
 
-import org.springblade.core.mp.base.BaseService;
+import com.snailscoder.core.mybatis.base.BaseService;
 import org.springblade.system.entity.AuthClient;
 
 /**

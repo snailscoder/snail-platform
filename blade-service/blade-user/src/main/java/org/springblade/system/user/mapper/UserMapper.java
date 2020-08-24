@@ -41,16 +41,6 @@ public interface UserMapper extends BaseMapper<User> {
 	List<User> selectUserPage(IPage page, User user);
 
 	/**
-	 * 获取用户
-	 *
-	 * @param tenantId
-	 * @param account
-	 * @param password
-	 * @return
-	 */
-	User getUser(String tenantId, String account, String password);
-
-	/**
 	 * 获取角色名
 	 *
 	 * @param ids
