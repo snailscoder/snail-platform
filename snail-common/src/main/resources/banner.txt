@@ -1,0 +1,7 @@
+${AnsiColor.BRIGHT_CYAN} ____                 _   _       ${AnsiColor.BLUE}    ____             _
+${AnsiColor.BRIGHT_CYAN}/ ___|  _ __    __ _ (_) | | ___  ${AnsiColor.BLUE}   / ___|  ___    __| |  ___   _ __
+${AnsiColor.BRIGHT_CYAN}\___ \ | '_ \  / _` || | | |/ __| ${AnsiColor.BLUE}  | |     / _ \  / _` | / _ \ | '__|
+${AnsiColor.BRIGHT_CYAN} ___) || | | || (_| || | | |\__ \ ${AnsiColor.BLUE}  | |___ | (_) || (_| ||  __/ | |
+${AnsiColor.BRIGHT_CYAN}|____/ |_| |_| \__,_||_| |_||___/ ${AnsiColor.BLUE}   \____| \___/  \__,_| \___  |_|
+${AnsiColor.BRIGHT_CYAN}                                  ${AnsiColor.BLUE}
+${AnsiColor.BLUE}:: SnailsCoder :: ${spring.application.name}:${AnsiColor.RED}${snail.env}${AnsiColor.BLUE} :: Running SpringBoot ${spring-boot.version} :: ${AnsiColor.BRIGHT_BLACK}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>blade-ops</artifactId>
+        <groupId>com.snailscoder</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>blade-resource</artifactId>
+    <name>${project.artifactId}</name>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.snailscoder</groupId>
+            <artifactId>blade-common</artifactId>
+            <version>${blade.project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.snailscoder</groupId>
+            <artifactId>snail-core-tool</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.snailscoder</groupId>
+            <artifactId>snail-core-cloud</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.snailscoder</groupId>
+                    <artifactId>snail-core-secure</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.snailscoder</groupId>
+            <artifactId>snail-core-oss</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

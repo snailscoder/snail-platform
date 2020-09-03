@@ -75,7 +75,7 @@ CREATE TABLE `blade_code`  (
 -- Records of blade_code
 -- ----------------------------
 BEGIN;
-INSERT INTO `blade_code` VALUES (1123598812738675201, 1123598812738675201, 'blade-demo', '通知公告', 'blade_notice', 'blade_', 'id', 'org.springblade.desktop', 1, 1, 'D:\\Develop\\WorkSpace\\Git\\SpringBlade\\blade-ops\\blade-develop', 'D:\\Develop\\WorkSpace\\Git\\Sword', 0);
+INSERT INTO `blade_code` VALUES (1123598812738675201, 1123598812738675201, 'blade-demo', '通知公告', 'blade_notice', 'blade_', 'id', 'com.snailscoder.desktop', 1, 1, 'D:\\Develop\\WorkSpace\\Git\\SpringBlade\\blade-ops\\blade-develop', 'D:\\Develop\\WorkSpace\\Git\\Sword', 0);
 COMMIT;
 
 -- ----------------------------

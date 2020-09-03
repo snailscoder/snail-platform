@@ -3,13 +3,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.snailscoder</groupId>
-    <artifactId>SpringBlade</artifactId>
+    <parent>
+        <groupId>com.snailscoder</groupId>
+        <artifactId>snailscoder-dependencies-parent</artifactId>
+        <version>Hoxton.SR6</version>
+        <relativePath/>
+    </parent>
+
+    <artifactId>snail-platform</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
-        <blade.tool.version>2.7.2</blade.tool.version>
+        <blade.tool.version>1.0-SNAPSHOT</blade.tool.version>
+        <snail.core.version>1.0-SNAPSHOT</snail.core.version>
         <blade.project.version>1.0-SNAPSHOT</blade.project.version>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -22,28 +29,27 @@
         <protostuff.version>1.6.0</protostuff.version>
         <captcha.version>1.6.2</captcha.version>
         <easyexcel.version>2.2.6</easyexcel.version>
+        <weixin-java-mp.version>3.8.0</weixin-java-mp.version>
         <mica.auto.version>1.1.0</mica.auto.version>
         <alibaba.cloud.version>2.2.1.RELEASE</alibaba.cloud.version>
         <spring.boot.admin.version>2.3.0</spring.boot.admin.version>
-
         <spring.boot.version>2.2.9.RELEASE</spring.boot.version>
         <spring.cloud.version>Hoxton.SR7</spring.cloud.version>
         <spring.platform.version>Cairo-SR8</spring.platform.version>
-
         <!-- 推荐使用Harbor -->
-        <docker.registry.url>10.211.55.5</docker.registry.url>
-        <docker.registry.host>http://${docker.registry.url}:2375</docker.registry.host>
+        <docker.registry.url>ccr.ccs.tencentyun.com/snailscoder</docker.registry.url>
+        <docker-maven-plugin.version>1.4.13</docker-maven-plugin.version>
+        <docker.java.opts>-Xms128m -Xmx512m</docker.java.opts>
         <docker.plugin.version>1.2.0</docker.plugin.version>
     </properties>
 
-    <modules>
-        <module>blade-auth</module>
-        <module>blade-gateway</module>
-        <module>blade-ops</module>
-        <module>blade-service</module>
-        <module>blade-service-api</module>
-        <module>blade-common</module>
-    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
     <dependencyManagement>
         <dependencies>
@@ -62,22 +68,46 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
+                <groupId>com.snailscoder</groupId>
+                <artifactId>snail-core-bom</artifactId>
+                <version>${snail.core.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${alibaba.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
                 <groupId>io.spring.platform</groupId>
                 <artifactId>platform-bom</artifactId>
                 <version>${spring.platform.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <dependency>
+                <groupId>net.dreamlu</groupId>
+                <artifactId>mica-auto</artifactId>
+                <version>${mica.auto.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
+    <modules>
+        <module>snail-auth</module>
+        <module>snail-gateway</module>
+        <!--        <module>snail-ops</module>-->
+        <module>snail-service</module>
+        <module>snail-service-api</module>
+        <module>snail-common</module>
+    </modules>
+
+
 
     <build>
         <finalName>${project.name}</finalName>
@@ -108,6 +138,11 @@
                             </goals>
                         </execution>
                     </executions>
+                </plugin>
+                <plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>dockerfile-maven-plugin</artifactId>
+                    <version>${docker-maven-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -145,6 +180,9 @@
         <pluginRepository>
             <id>aliyun-plugin</id>
             <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>

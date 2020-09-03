@@ -1,0 +1,19 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: snail-gateway
+  cloud:
+    discovery:
+      reactive:
+        enabled: false
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+    loadbalancer:
+      retry:
+        enabled: true
+
+

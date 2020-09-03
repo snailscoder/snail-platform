@@ -47,7 +47,7 @@ SpringBlade
 ├    └── blade-user -- 用户模块 
 ├── blade-service-api -- 业务模块api封装
 ├    ├── blade-desk-api -- 工作台api 
-├    ├── blade-dict-api -- 字典api 
+├    ├── snail-dict-api -- 字典api 
 ├    ├── blade-system-api -- 系统api 
 └──  └── blade-user-api -- 用户api 
 ```
