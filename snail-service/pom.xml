@@ -20,7 +20,7 @@
         <module>snail-log</module>
 <!--        <module>snail-system</module>-->
         <module>snail-upms</module>
-<!--        <module>snail-store</module>-->
+        <module>snail-store</module>
     </modules>
 
     <dependencies>

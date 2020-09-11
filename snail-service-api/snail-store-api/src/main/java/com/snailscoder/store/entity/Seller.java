@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2018-2028, Chill Zhuang 庄骞 (smallchill@163.com).
+/*
+ * Copyright (c) 2018-2028, snailscoder (huaxin803@gmail.com).
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,6 +52,9 @@ public class Seller extends BaseEntity {
      */
     @ApiModelProperty(value = "店铺ID")
     private Long storeId;
+
+	@ApiModelProperty(value = "店员类型，0:销售，1:店员，2: 店长")
+	private Integer clerk;
     /**
      * 简称
      */

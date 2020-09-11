@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2018-2028, Chill Zhuang 庄骞 (smallchill@163.com).
+/*
+ * Copyright (c) 2018-2028, snailscoder (huaxin803@gmail.com).
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,16 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.snailscoder.upms.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.snailscoder.upms.entity.AuthClient;
+package com.snailscoder.upms.dto;
+
+import lombok.Data;
 
 /**
- * Mapper 接口
- *
- * @author snailscoder
+ * @author: snailscoder
+ * @date: 2020/9/11 上午10:39
  */
-public interface AuthClientMapper extends BaseMapper<AuthClient> {
-
+@Data
+public class UploadSignDTO {
+	private String signature;
+	private String sessionToken;
+	private String fileKey;
 }

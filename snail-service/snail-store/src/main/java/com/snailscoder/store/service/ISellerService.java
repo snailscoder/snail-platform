@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2018-2028, Chill Zhuang 庄骞 (smallchill@163.com).
+/*
+ * Copyright (c) 2018-2028, snailscoder (huaxin803@gmail.com).
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,10 +15,9 @@
  */
 package com.snailscoder.store.service;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.snailscoder.core.mybatis.base.ISuperService;
+import com.snailscoder.core.mp.base.BaseService;
 import com.snailscoder.store.entity.Seller;
-import com.snailscoder.store.vo.SellerVO;
+import com.snailscoder.upms.entity.User;
 
 /**
  * 销售员表 服务类
@@ -26,15 +25,28 @@ import com.snailscoder.store.vo.SellerVO;
  * @author Blade
  * @since 2020-08-24
  */
-public interface ISellerService extends ISuperService<Seller> {
+public interface ISellerService extends BaseService<Seller> {
 
 	/**
-	 * 自定义分页
-	 *
-	 * @param page
-	 * @param seller
+	 * 店铺添加销售员
+	 * @param storeId 店铺ID
+	 * @param user 用户信息
+	 * @param inviter 邀请人
+	 */
+	Seller addSeller(Long storeId, User user, Long inviter);
+
+	/**
+	 * 根据店铺ID及用户ID查询销售员
+	 * @param storeId
+	 * @param userId
 	 * @return
 	 */
-	IPage<SellerVO> selectSellerPage(IPage<SellerVO> page, SellerVO seller);
+	Seller getSeller(Long storeId, Long userId);
 
+	/**
+	 * 根据用户ID查询销售员
+	 * @param userId
+	 * @return
+	 */
+	Seller getSeller(Long userId);
 }

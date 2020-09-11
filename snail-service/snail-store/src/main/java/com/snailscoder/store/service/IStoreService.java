@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2018-2028, Chill Zhuang 庄骞 (smallchill@163.com).
+/*
+ * Copyright (c) 2018-2028, snailscoder (huaxin803@gmail.com).
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,10 +15,8 @@
  */
 package com.snailscoder.store.service;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.snailscoder.core.mybatis.base.ISuperService;
+import com.snailscoder.core.mp.base.BaseService;
 import com.snailscoder.store.entity.Store;
-import com.snailscoder.store.vo.StoreVO;
 
 /**
  * 店铺表 服务类
@@ -26,15 +24,19 @@ import com.snailscoder.store.vo.StoreVO;
  * @author snailscoder
  * @since 2020-08-20
  */
-public interface IStoreService extends ISuperService<Store> {
+public interface IStoreService extends BaseService<Store> {
 
 	/**
-	 * 自定义分页
-	 *
-	 * @param page
+	 * 创建店铺
 	 * @param store
 	 * @return
 	 */
-	IPage<StoreVO> selectStorePage(IPage<StoreVO> page, StoreVO store);
+	boolean createStore(Store store);
 
+	/**
+	 * 根据用户ID查询所属店铺
+	 * @param userId
+	 * @return
+	 */
+	Store getStoreByUserId(Long userId);
 }

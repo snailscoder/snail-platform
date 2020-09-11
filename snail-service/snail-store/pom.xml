@@ -19,7 +19,16 @@
         </dependency>
         <dependency>
             <groupId>com.snailscoder</groupId>
+            <artifactId>snail-core-cache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.snailscoder</groupId>
             <artifactId>snail-store-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.snailscoder</groupId>
+            <artifactId>snail-upms-api</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

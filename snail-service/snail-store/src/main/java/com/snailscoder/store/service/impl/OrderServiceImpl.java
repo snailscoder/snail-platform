@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2018-2028, Chill Zhuang 庄骞 (smallchill@163.com).
+/*
+ * Copyright (c) 2018-2028, snailscoder (huaxin803@gmail.com).
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,12 +15,10 @@
  */
 package com.snailscoder.store.service.impl;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.snailscoder.core.mybatis.base.SuperServiceImpl;
+import com.snailscoder.core.mp.base.BaseServiceImpl;
 import com.snailscoder.store.entity.Order;
 import com.snailscoder.store.mapper.OrderMapper;
 import com.snailscoder.store.service.IOrderService;
-import com.snailscoder.store.vo.OrderVO;
 import org.springframework.stereotype.Service;
 
 /**
@@ -30,11 +28,6 @@ import org.springframework.stereotype.Service;
  * @since 2020-08-20
  */
 @Service
-public class OrderServiceImpl extends SuperServiceImpl<OrderMapper, Order> implements IOrderService {
-
-	@Override
-	public IPage<OrderVO> selectOrderPage(IPage<OrderVO> page, OrderVO order) {
-		return page.setRecords(baseMapper.selectOrderPage(page, order));
-	}
+public class OrderServiceImpl extends BaseServiceImpl<OrderMapper, Order> implements IOrderService {
 
 }

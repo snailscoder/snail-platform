@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2018-2028, Chill Zhuang 庄骞 (smallchill@163.com).
+/*
+ * Copyright (c) 2018-2028, snailscoder (huaxin803@gmail.com).
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,10 +15,8 @@
  */
 package com.snailscoder.store.service;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.snailscoder.core.mybatis.base.ISuperService;
+import com.snailscoder.core.mp.base.BaseService;
 import com.snailscoder.store.entity.Product;
-import com.snailscoder.store.vo.ProductVO;
 
 /**
  * 用户表 服务类
@@ -26,15 +24,6 @@ import com.snailscoder.store.vo.ProductVO;
  * @author snailscoder
  * @since 2020-08-19
  */
-public interface IProductService extends ISuperService<Product> {
-
-	/**
-	 * 自定义分页
-	 *
-	 * @param page
-	 * @param product
-	 * @return
-	 */
-	IPage<ProductVO> selectProductPage(IPage<ProductVO> page, ProductVO product);
+public interface IProductService extends BaseService<Product> {
 
 }

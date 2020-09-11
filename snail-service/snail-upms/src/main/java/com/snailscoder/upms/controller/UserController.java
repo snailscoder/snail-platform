@@ -273,7 +273,7 @@ public class UserController {
 	@PostMapping("/register-oauth")
 	@ApiOperationSupport(order = 15)
 	@ApiOperation(value = "小程序数据更新", notes = "传入userOauth")
-	public R<Void> registerGuest(@RequestBody UserOauthEncryDTO encryDTO) {
+	public R<Void> registerGuest(@RequestBody UserOauthEncryDTO encryDTO, LoginUser loginUser) {
 		return R.status(userService.registerOauth(encryDTO));
 	}
 

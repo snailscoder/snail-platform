@@ -109,20 +109,4 @@ public class Menu extends BaseEntity {
 	 */
 	@ApiModelProperty(value = "备注")
 	private String remark;
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		Menu other = (Menu) obj;
-		if (Func.equals(this.getId(), other.getId())) {
-			return true;
-		}
-		return false;
-	}
-
 }

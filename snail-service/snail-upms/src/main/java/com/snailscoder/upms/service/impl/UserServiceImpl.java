@@ -41,6 +41,7 @@ import com.snailscoder.upms.mapper.UserMapper;
 import com.snailscoder.upms.service.IRoleService;
 import com.snailscoder.upms.service.IUserOauthService;
 import com.snailscoder.upms.service.IUserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -56,6 +57,7 @@ import java.util.stream.Collectors;
  *
  * @author snailscoder
  */
+@Slf4j
 @Service
 public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implements IUserService {
 	private static final String GUEST_NAME = "guest";
@@ -246,11 +248,20 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
 		WxMaUserInfo wxMaUserInfo = wxMaService.getUserService().getUserInfo(userOauth.getAccessToken(),encryDTO.getEncryptedData(),encryDTO.getIv());
 		convertMaUser2UserOauth(wxMaUserInfo,userOauth);
 		userOauthService.saveOrUpdate(userOauth);
-		User user = new User();
-		user.setAccount(userOauth.getUuid());
-		user.setName(userOauth.getNickname());
-		user.setRealName(userOauth.getUsername());
-		return this.registerGuest(user,userOauth.getId());
+		if(Func.isEmpty(userOauth.getUserId())){
+			log.info("用户不存在，直接创建用户，oauthID:{}", userOauth.getId());
+			User user = new User();
+			user.setAccount(userOauth.getUuid());
+			user.setName(userOauth.getNickname());
+			user.setRealName(userOauth.getUsername());
+			return this.registerGuest(user,userOauth.getId());
+		}else {
+			log.info("用户已存在，重复授权，仅更新基本信息，oauthId:{}, userId:{}", userOauth.getId(), userOauth.getUserId());
+			User user = this.getById(userOauth.getUserId());
+			user.setAvatar(userOauth.getAvatar());
+			user.setName(userOauth.getNickname());
+			return this.updateById(user);
+		}
 	}
 
 	/**

@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2018-2028, Chill Zhuang 庄骞 (smallchill@163.com).
+/*
+ * Copyright (c) 2018-2028, snailscoder (huaxin803@gmail.com).
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,20 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.snailscoder.upms.service.impl;
 
-import com.snailscoder.core.mp.base.BaseServiceImpl;
-import com.snailscoder.upms.entity.AuthClient;
-import com.snailscoder.upms.mapper.AuthClientMapper;
-import com.snailscoder.upms.service.IAuthClientService;
-import org.springframework.stereotype.Service;
+package com.snailscoder.upms.dto;
+
+import lombok.Data;
 
 /**
- *  服务实现类
- *
- * @author snailscoder
+ * @author: snailscoder
+ * @date: 2020/9/11 上午10:39
  */
-@Service
-public class AuthClientServiceImpl extends BaseServiceImpl<AuthClientMapper, AuthClient> implements IAuthClientService {
+@Data
+public class CredentialDTO {
+	private Credentials credentials;
+	private String requestId;
+	private String expiration;
+	private Long startTime;
+	private Long expiredTime;
 
+	@Data
+	public static class Credentials{
+		private String tmpSecretId;
+		private String tmpSecretKey;
+		private String sessionToken;
+	}
 }

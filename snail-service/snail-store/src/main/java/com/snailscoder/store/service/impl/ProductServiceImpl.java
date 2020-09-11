@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2018-2028, Chill Zhuang 庄骞 (smallchill@163.com).
+/*
+ * Copyright (c) 2018-2028, snailscoder (huaxin803@gmail.com).
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,13 +15,11 @@
  */
 package com.snailscoder.store.service.impl;
 
-import com.snailscoder.core.mybatis.base.BaseServiceImpl;
+import com.snailscoder.core.mp.base.BaseServiceImpl;
 import com.snailscoder.store.entity.Product;
-import com.snailscoder.store.vo.ProductVO;
 import com.snailscoder.store.mapper.ProductMapper;
 import com.snailscoder.store.service.IProductService;
 import org.springframework.stereotype.Service;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 
 /**
  * 商品表 服务实现类
@@ -32,9 +30,5 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 @Service
 public class ProductServiceImpl extends BaseServiceImpl<ProductMapper, Product> implements IProductService {
 
-	@Override
-	public IPage<ProductVO> selectProductPage(IPage<ProductVO> page, ProductVO product) {
-		return page.setRecords(baseMapper.selectProductPage(page, product));
-	}
 
 }

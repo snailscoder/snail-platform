@@ -15,29 +15,29 @@
  */
 package com.snailscoder.store.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.snailscoder.store.entity.Store;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
-import io.swagger.annotations.ApiParam;
-import lombok.AllArgsConstructor;
-import javax.validation.Valid;
-
+import com.snailscoder.core.boot.ctrl.SnailController;
 import com.snailscoder.core.mp.support.Condition;
 import com.snailscoder.core.mp.support.Query;
-import com.snailscoder.core.secure.BladeUser;
+import com.snailscoder.core.secure.LoginUser;
 import com.snailscoder.core.tool.api.R;
-import com.snailscoder.core.tool.constant.BladeConstant;
 import com.snailscoder.core.tool.utils.Func;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.RequestParam;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.snailscoder.store.vo.StoreVO;
-import com.snailscoder.store.wrapper.StoreWrapper;
+import com.snailscoder.store.entity.Seller;
+import com.snailscoder.store.entity.Store;
+import com.snailscoder.store.service.ISellerService;
 import com.snailscoder.store.service.IStoreService;
-import com.snailscoder.core.boot.ctrl.BladeController;
-import java.util.List;
+import com.snailscoder.store.vo.SellerVO;
+import com.snailscoder.store.vo.StoreVO;
+import com.snailscoder.store.wrapper.SellerWrapper;
+import com.snailscoder.store.wrapper.StoreWrapper;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 /**
  * 店铺表 控制器
@@ -49,9 +49,10 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/store")
 @Api(value = "店铺表", tags = "店铺表接口")
-public class StoreController extends BladeController {
+public class StoreController extends SnailController {
 
-	private IStoreService storeService;
+	private final IStoreService storeService;
+	private final ISellerService sellerService;
 
 	/**
 	* 详情
@@ -62,6 +63,16 @@ public class StoreController extends BladeController {
 	public R<StoreVO> detail(@RequestParam("id") Long id) {
 		Store store = storeService.getById(id);
 		return R.data(StoreWrapper.build().entityVO(store));
+	}
+
+	/**
+	 * 根据用户查询销售员
+	 */
+	@GetMapping("/user")
+	@ApiOperationSupport(order = 1)
+	@ApiOperation(value = "用户默认店铺", notes = "当前用户")
+	public R<StoreVO> getByUserId(LoginUser loginUser) {
+		return R.data(StoreWrapper.build().entityVO(storeService.getStoreByUserId(loginUser.getUserId())));
 	}
 
 	/**
@@ -76,35 +87,14 @@ public class StoreController extends BladeController {
 	}
 
 	/**
-	 * 下拉数据源
-	 */
-	@GetMapping("/select")
-	@ApiOperation(value = "下拉数据源", notes = "传入tenant")
-	public R<List<Store>> select(Store store, BladeUser bladeUser) {
-		QueryWrapper<Store> queryWrapper = Condition.getQueryWrapper(store);
-		List<Store> list = storeService.list((!bladeUser.getTenantId().equals(BladeConstant.ADMIN_TENANT_ID)) ? queryWrapper.lambda().eq(Store::getId, store.getId()) : queryWrapper);
-		return R.data(list);
-	}
-
-	/**
-	* 自定义分页 店铺表
-	*/
-	@GetMapping("/page")
-    @ApiOperationSupport(order = 3)
-	@ApiOperation(value = "分页", notes = "传入store")
-	public R<IPage<StoreVO>> page(StoreVO store, Query query) {
-		IPage<StoreVO> pages = storeService.selectStorePage(Condition.getPage(query), store);
-		return R.data(pages);
-	}
-
-	/**
 	* 新增 店铺表
 	*/
 	@PostMapping("/save")
     @ApiOperationSupport(order = 4)
 	@ApiOperation(value = "新增", notes = "传入store")
-	public R save(@Valid @RequestBody Store store) {
-		return R.status(storeService.save(store));
+	public R<Void> save(@Valid @RequestBody Store store, LoginUser loginUser) {
+		store.setCreateUser(loginUser.getUserId());
+		return R.status(storeService.createStore(store));
 	}
 
 	/**
@@ -113,20 +103,9 @@ public class StoreController extends BladeController {
 	@PostMapping("/update")
     @ApiOperationSupport(order = 5)
 	@ApiOperation(value = "修改", notes = "传入store")
-	public R update(@Valid @RequestBody Store store) {
+	public R<Void> update(@Valid @RequestBody Store store) {
 		return R.status(storeService.updateById(store));
 	}
-
-	/**
-	* 新增或修改 店铺表
-	*/
-	@PostMapping("/submit")
-    @ApiOperationSupport(order = 6)
-	@ApiOperation(value = "新增或修改", notes = "传入store")
-	public R submit(@Valid @RequestBody Store store) {
-		return R.status(storeService.saveOrUpdate(store));
-	}
-
 
 	/**
 	* 删除 店铺表
@@ -134,7 +113,7 @@ public class StoreController extends BladeController {
 	@PostMapping("/remove")
     @ApiOperationSupport(order = 7)
 	@ApiOperation(value = "逻辑删除", notes = "传入ids")
-	public R remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
+	public R<Void> remove(@ApiParam(value = "主键集合", required = true) @RequestParam String ids) {
 		return R.status(storeService.deleteLogic(Func.toLongList(ids)));
 	}
 

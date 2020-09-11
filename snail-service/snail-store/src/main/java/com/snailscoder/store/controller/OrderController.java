@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2018-2028, huaxin (huaxin803@gmail.com).
+/*
+ * Copyright (c) 2018-2028, snailscoder (huaxin803@gmail.com).
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,26 +15,23 @@
  */
 package com.snailscoder.store.controller;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
-import io.swagger.annotations.ApiParam;
-import lombok.AllArgsConstructor;
-import javax.validation.Valid;
-
 import com.snailscoder.core.mp.support.Condition;
 import com.snailscoder.core.mp.support.Query;
 import com.snailscoder.core.tool.api.R;
 import com.snailscoder.core.tool.utils.Func;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.RequestParam;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.snailscoder.store.entity.Order;
+import com.snailscoder.store.service.IOrderService;
 import com.snailscoder.store.vo.OrderVO;
 import com.snailscoder.store.wrapper.OrderWrapper;
-import com.snailscoder.store.service.IOrderService;
-import com.snailscoder.core.boot.ctrl.BladeController;
-import java.util.List;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 /**
  * 销售订单 控制器
@@ -48,7 +45,7 @@ import java.util.List;
 @Api(value = "销售订单", tags = "销售订单接口")
 public class OrderController extends BaseStoreController {
 
-	private IOrderService orderService;
+	private final IOrderService orderService;
 
 	/**
 	* 详情
@@ -70,17 +67,6 @@ public class OrderController extends BaseStoreController {
 	public R<IPage<OrderVO>> list(Order order, Query query) {
 		IPage<Order> pages = orderService.page(Condition.getPage(query), Condition.getQueryWrapper(order));
 		return R.data(OrderWrapper.build().pageVO(pages));
-	}
-
-	/**
-	* 自定义分页 销售订单
-	*/
-	@GetMapping("/page")
-    @ApiOperationSupport(order = 3)
-	@ApiOperation(value = "分页", notes = "传入order")
-	public R<IPage<OrderVO>> page(OrderVO order, Query query) {
-		IPage<OrderVO> pages = orderService.selectOrderPage(Condition.getPage(query), order);
-		return R.data(pages);
 	}
 
 	/**

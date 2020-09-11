@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2018-2028, Chill Zhuang 庄骞 (smallchill@163.com).
+/*
+ * Copyright (c) 2018-2028, snailscoder (huaxin803@gmail.com).
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,9 +19,6 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.exceptions.ApiException;
 import com.snailscoder.core.mp.base.BaseServiceImpl;
-import com.snailscoder.core.tool.node.ForestNodeMerger;
-import com.snailscoder.core.tool.node.INode;
-import com.snailscoder.core.tool.node.TreeNode;
 import com.snailscoder.core.tool.utils.Func;
 import com.snailscoder.core.tool.utils.StringPool;
 import com.snailscoder.upms.entity.Dict;
@@ -34,7 +31,6 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.snailscoder.common.cache.CacheNames.DICT_LIST;
 import static com.snailscoder.common.cache.CacheNames.DICT_VALUE;

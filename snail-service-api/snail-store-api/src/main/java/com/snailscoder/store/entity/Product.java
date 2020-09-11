@@ -2,7 +2,7 @@ package com.snailscoder.store.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.snailscoder.core.mp.base.TenantEntity;
+import com.snailscoder.core.mp.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -20,7 +20,7 @@ import java.math.BigDecimal;
 @TableName("snail_product")
 @EqualsAndHashCode(callSuper = true)
 @ApiModel(value = "Product对象", description = "商品表")
-public class Product extends TenantEntity {
+public class Product extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
 

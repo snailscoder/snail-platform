@@ -19,7 +19,7 @@
         <module>snail-dict-api</module>
 <!--        <module>snail-system-api</module>-->
         <module>snail-upms-api</module>
-<!--        <module>snail-store-api</module>-->
+        <module>snail-store-api</module>
     </modules>
 
     <dependencies>

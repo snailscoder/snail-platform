@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2018-2028, Chill Zhuang 庄骞 (smallchill@163.com).
+/*
+ * Copyright (c) 2018-2028, snailscoder (huaxin803@gmail.com).
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,11 +15,8 @@
  */
 package com.snailscoder.store.mapper;
 
-import com.snailscoder.store.entity.Order;
-import com.snailscoder.store.vo.OrderVO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import java.util.List;
+import com.snailscoder.store.entity.Order;
 
 /**
  * 销售订单 Mapper 接口
@@ -28,14 +25,5 @@ import java.util.List;
  * @since 2020-08-20
  */
 public interface OrderMapper extends BaseMapper<Order> {
-
-	/**
-	 * 自定义分页
-	 *
-	 * @param page
-	 * @param order
-	 * @return
-	 */
-	List<OrderVO> selectOrderPage(IPage page, OrderVO order);
 
 }

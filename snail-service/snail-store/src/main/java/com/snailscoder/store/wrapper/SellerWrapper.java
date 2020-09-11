@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2018-2028, Chill Zhuang 庄骞 (smallchill@163.com).
+/*
+ * Copyright (c) 2018-2028, snailscoder (huaxin803@gmail.com).
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package com.snailscoder.store.wrapper;
 
+import com.snailscoder.core.tool.utils.Func;
 import com.snailscoder.store.entity.Seller;
 import com.snailscoder.store.vo.SellerVO;
 import com.snailscoder.core.mp.support.BaseEntityWrapper;
@@ -34,9 +35,11 @@ public class SellerWrapper extends BaseEntityWrapper<Seller, SellerVO>  {
 
 	@Override
 	public SellerVO entityVO(Seller seller) {
-		SellerVO sellerVO = BeanUtil.copy(seller, SellerVO.class);
-
-		return sellerVO;
+    	if(Func.isNotEmpty(seller)){
+			return BeanUtil.copy(seller, SellerVO.class);
+		}else {
+    		return null;
+		}
 	}
 
 }

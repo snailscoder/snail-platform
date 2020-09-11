@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2018-2028, Chill Zhuang 庄骞 (smallchill@163.com).
+/*
+ * Copyright (c) 2018-2028, snailscoder (huaxin803@gmail.com).
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,4 +24,5 @@ public interface CacheNames {
 	String DICT_VALUE = "snail:dict:value";
 	String DICT_LIST = "snail:dict:list";
 	String CAPTCHA_KEY = "snail:auth::captcha:";
+	String USER_STORE_KEY = "snail:store:userid";
 }

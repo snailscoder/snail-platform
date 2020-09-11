@@ -42,6 +42,9 @@ public class User extends BaseEntity {
 	@ApiModelProperty(value = "主键")
 	@TableId(value = "id")
 	private Long id;
+
+	@ApiModelProperty(value = "店铺ID")
+	private Long storeId;
 	/**
 	 * 编号
 	 */

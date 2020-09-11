@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2018-2028, Chill Zhuang 庄骞 (smallchill@163.com).
+/*
+ * Copyright (c) 2018-2028, snailscoder (huaxin803@gmail.com).
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,13 +15,26 @@
  */
 package com.snailscoder.store.service.impl;
 
-import com.snailscoder.core.mybatis.base.BaseServiceImpl;
+import cn.hutool.core.lang.Assert;
+import com.snailscoder.common.cache.CacheNames;
+import com.snailscoder.core.log.exception.ServiceException;
+import com.snailscoder.core.mp.base.BaseServiceImpl;
+import com.snailscoder.core.tool.api.R;
+import com.snailscoder.core.tool.utils.Func;
+import com.snailscoder.store.entity.Seller;
 import com.snailscoder.store.entity.Store;
-import com.snailscoder.store.vo.StoreVO;
 import com.snailscoder.store.mapper.StoreMapper;
+import com.snailscoder.store.service.ISellerService;
 import com.snailscoder.store.service.IStoreService;
+import com.snailscoder.upms.entity.User;
+import com.snailscoder.upms.entity.UserInfo;
+import com.snailscoder.upms.feign.IUserClient;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import com.baomidou.mybatisplus.core.metadata.IPage;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 店铺表 服务实现类
@@ -29,12 +42,44 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
  * @author snailscoder
  * @since 2020-08-20
  */
+@Slf4j
+@AllArgsConstructor
 @Service
 public class StoreServiceImpl extends BaseServiceImpl<StoreMapper, Store> implements IStoreService {
 
+	private final IUserClient userClient;
+	private final ISellerService sellerService;
+
 	@Override
-	public IPage<StoreVO> selectStorePage(IPage<StoreVO> page, StoreVO store) {
-		return page.setRecords(baseMapper.selectStorePage(page, store));
+	@Transactional(rollbackFor = Exception.class)
+	public boolean createStore(Store store) {
+		log.info("创建店铺信息，创建人:{}", store.getCreateUser());
+		R<UserInfo> result = userClient.userInfo(store.getCreateUser());
+		if(result.isSuccess() && Func.isNotEmpty(result.getData())){
+			Assert.notNull(result.getData().getUser());
+			User user = result.getData().getUser();
+			Seller seller = sellerService.getSeller(user.getId());
+			if(Func.isNotEmpty(seller)){
+				throw new ServiceException("用户已加入其它店铺，无法创建");
+			}
+			//店铺Logo默认为用户头像
+			store.setStoreLogo(user.getAvatar());
+			this.save(store);
+			log.info("店铺创建成功，创建人:{}, 店铺ID:{}", store.getCreateUser(), store.getId());
+			sellerService.addSeller(store.getId(), user, user.getId());
+			return true;
+		}else {
+			throw new ServiceException("用户信息不存在");
+		}
 	}
 
+	@Override
+	@Cacheable(cacheNames = CacheNames.USER_STORE_KEY, key = "#userId", unless="#result == null")
+	public Store getStoreByUserId(Long userId) {
+		Seller seller = sellerService.getSeller(userId);
+		if(Func.isEmpty(seller)){
+			return null;
+		}
+		return this.getById(seller.getStoreId());
+	}
 }

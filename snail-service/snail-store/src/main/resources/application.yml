@@ -1,8 +1,10 @@
+#服务器端口
+server:
+  port: 8200
 
-
-#swagger扫描路径配置
-swagger:
-  base-packages:
-    - org.springbalde
-    - com.snailscoder
-
+#数据源配置
+spring:
+  datasource:
+    url: ${snails.datasource.url}
+    username: ${snails.datasource.username}
+    password: ${snails.datasource.password}

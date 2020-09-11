@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2018-2028, Chill Zhuang 庄骞 (smallchill@163.com).
+/*
+ * Copyright (c) 2018-2028, snailscoder (huaxin803@gmail.com).
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,29 +16,25 @@
 package com.snailscoder.store.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.snailscoder.store.entity.Store;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
-import io.swagger.annotations.ApiParam;
-import lombok.AllArgsConstructor;
-import javax.validation.Valid;
-
+import com.snailscoder.core.boot.ctrl.SnailController;
 import com.snailscoder.core.mp.support.Condition;
 import com.snailscoder.core.mp.support.Query;
-import com.snailscoder.core.secure.BladeUser;
+import com.snailscoder.core.secure.LoginUser;
 import com.snailscoder.core.tool.api.R;
-import com.snailscoder.core.tool.constant.BladeConstant;
 import com.snailscoder.core.tool.utils.Func;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.RequestParam;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.snailscoder.store.entity.Seller;
+import com.snailscoder.store.service.ISellerService;
 import com.snailscoder.store.vo.SellerVO;
 import com.snailscoder.store.wrapper.SellerWrapper;
-import com.snailscoder.store.service.ISellerService;
-import com.snailscoder.core.boot.ctrl.BladeController;
-import java.util.List;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 /**
  * 销售员表 控制器
@@ -50,9 +46,9 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/seller")
 @Api(value = "销售员表", tags = "销售员表接口")
-public class SellerController extends BaseStoreController {
+public class SellerController extends SnailController {
 
-	private ISellerService sellerService;
+	private final ISellerService sellerService;
 
 	/**
 	* 详情
@@ -66,15 +62,29 @@ public class SellerController extends BaseStoreController {
 	}
 
 	/**
+	 * 详情
+	 */
+	@GetMapping("/detail/user")
+	@ApiOperationSupport(order = 1)
+	@ApiOperation(value = "详情", notes = "传入seller")
+	public R<SellerVO> detail(LoginUser loginUser) {
+		if(Func.isNotEmpty(loginUser)){
+			Seller detail = sellerService.getSeller(loginUser.getUserId());
+			return R.data(SellerWrapper.build().entityVO(detail));
+		}else {
+			return R.data(null);
+		}
+	}
+
+	/**
 	* 分页 销售员表
 	*/
 	@GetMapping("/list")
     @ApiOperationSupport(order = 2)
 	@ApiOperation(value = "分页", notes = "传入seller")
-	public R<IPage<SellerVO>> list(Seller seller, Query query, BladeUser bladeUser) {
+	public R<IPage<SellerVO>> list(Seller seller, Query query) {
 		QueryWrapper<Seller> queryWrapper = Condition.getQueryWrapper(seller);
-		Long storeId = getStoreId(bladeUser);
-		IPage<Seller> pages = sellerService.page(Condition.getPage(query), (!bladeUser.getTenantId().equals(BladeConstant.ADMIN_TENANT_ID)) ? queryWrapper.lambda().eq(Seller::getStoreId, storeId) : queryWrapper);
+		IPage<Seller> pages = sellerService.page(Condition.getPage(query), queryWrapper);
 		return R.data(SellerWrapper.build().pageVO(pages));
 	}
 

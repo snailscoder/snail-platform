@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2018-2028, Chill Zhuang 庄骞 (smallchill@163.com).
+/*
+ * Copyright (c) 2018-2028, snailscoder (huaxin803@gmail.com).
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,16 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.snailscoder.upms.service;
 
-import com.snailscoder.core.mp.base.BaseService;
-import com.snailscoder.upms.entity.AuthClient;
+package com.snailscoder.store.constant;
 
 /**
- *  服务类
- *
- * @author snailscoder
+ * @author: snailscoder
+ * @date: 2020/9/4 下午4:34
  */
-public interface IAuthClientService extends BaseService<AuthClient> {
-
+public interface AppConstant {
+	Integer DEFAULT_SELLER_DISCOUNT = 100;
+	Integer DEFAULT_SELLER_LEVEL = 1;
 }
