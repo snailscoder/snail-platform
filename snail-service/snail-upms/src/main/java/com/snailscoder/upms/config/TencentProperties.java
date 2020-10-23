@@ -13,8 +13,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Data
 @ConfigurationProperties(prefix = "snail.tenant.cos")
 public class TencentProperties {
-    private String secretId = "AKID3ykMnBceJo8LNGoWxFMICxZ0ISSGGTzM";
-    private String secretKey = "LVZVHrKckV8ZobI422qTzLVTL2GSUOBn";
+    private String secretId;
+    private String secretKey;
     private String reginName = "ap-beijing";
     private String bucketName = "wxma-1254014761";
 }
