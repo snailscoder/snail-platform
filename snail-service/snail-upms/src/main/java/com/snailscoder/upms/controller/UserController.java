@@ -161,13 +161,6 @@ public class UserController {
 		return R.status(userService.grant(userIds, roleIds));
 	}
 
-	@PostMapping("/reset-password")
-	@ApiOperationSupport(order = 8)
-	@ApiOperation(value = "初始化密码", notes = "传入userId集合")
-	public R<Void> resetPassword(@ApiParam(value = "userId集合", required = true) @RequestParam String userIds) {
-		return R.status(userService.resetPassword(userIds));
-	}
-
 	/**
 	 * 修改密码
 	 *

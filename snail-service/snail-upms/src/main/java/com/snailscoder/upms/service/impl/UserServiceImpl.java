@@ -178,14 +178,6 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
 	}
 
 	@Override
-	public boolean resetPassword(String userIds) {
-		User user = new User();
-		user.setPassword(DigestUtil.encrypt(CommonConstant.DEFAULT_PASSWORD));
-		user.setUpdateTime(LocalDateTime.now());
-		return this.update(user, Wrappers.<User>update().lambda().in(User::getId, Func.toLongList(userIds)));
-	}
-
-	@Override
 	public boolean updatePassword(Long userId, String oldPassword, String newPassword, String newPassword1) {
 		User user = getById(userId);
 		if (!newPassword.equals(newPassword1)) {

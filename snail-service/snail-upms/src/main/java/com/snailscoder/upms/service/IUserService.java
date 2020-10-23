@@ -75,14 +75,6 @@ public interface IUserService extends BaseService<User> {
 	boolean grant(String userIds, String roleIds);
 
 	/**
-	 * 初始化密码
-	 *
-	 * @param userIds
-	 * @return
-	 */
-	boolean resetPassword(String userIds);
-
-	/**
 	 * 修改密码
 	 *
 	 * @param userId
