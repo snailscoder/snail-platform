@@ -17,10 +17,10 @@ import java.math.BigDecimal;
  * @since 2020-08-19
  */
 @Data
-@TableName("snail_product")
+@TableName("snail_product_sku")
 @EqualsAndHashCode(callSuper = true)
-@ApiModel(value = "Product对象", description = "商品表")
-public class Product extends BaseEntity {
+@ApiModel(value = "ProductSKU对象", description = "商品SKU")
+public class ProductSku extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
 
@@ -35,19 +35,28 @@ public class Product extends BaseEntity {
 	 */
 	@ApiModelProperty(value = "店铺ID")
 	private Long storeId;
+
+	@ApiModelProperty(value = "商品ID")
+	private Long productId;
 	/**
-	 * 产品名称
+	 * 规格名称
 	 */
-	@ApiModelProperty(value = "产品名称")
-	private String name;
+	@ApiModelProperty(value = "规格名称")
+	private String skuName;
 	/**
-	 * 商品主图
+	 * 代理价
 	 */
-	@ApiModelProperty(value = "商品主图")
-	private String mainImg;
+	@ApiModelProperty(value = "代理价")
+	private BigDecimal agentPrice;
 	/**
-	 * 商品描述
+	 * 零售价
 	 */
-	@ApiModelProperty(value = "商品描述")
-	private String intro;
+	@ApiModelProperty(value = "零售价")
+	private BigDecimal retailPrice;
+
+	/**
+	 * 成本价
+	 */
+	@ApiModelProperty(value = "成本价")
+	private BigDecimal costPrice;
 }

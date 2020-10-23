@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2018-2028, huaxin (huaxin803@gmail.com).
+/*
+ * Copyright (c) 2018-2028, snailscoder (huaxin803@gmail.com).
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,24 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.snailscoder.store.dto;
 
+package com.snailscoder.store.mapper;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.snailscoder.store.entity.Product;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
-import java.util.List;
+import com.snailscoder.store.entity.ProductSku;
 
 /**
- * 用户表数据传输对象实体类
- *
- * @author huaxin
- * @since 2020-08-19
+ * @author: snailscoder
+ * @date: 2020/8/19 下午7:58
  */
-@Data
-@EqualsAndHashCode(callSuper = true)
-public class ProductDTO extends Product {
-	private static final long serialVersionUID = 1L;
+public interface ProductSkuMapper extends BaseMapper<ProductSku> {
 
-	private List<ProductSkuDTO> skuList;
 }

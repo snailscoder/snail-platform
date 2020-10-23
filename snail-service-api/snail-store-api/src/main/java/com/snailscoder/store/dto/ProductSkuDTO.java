@@ -16,10 +16,9 @@
 package com.snailscoder.store.dto;
 
 import com.snailscoder.store.entity.Product;
+import com.snailscoder.store.entity.ProductSku;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
-import java.util.List;
 
 /**
  * 用户表数据传输对象实体类
@@ -29,8 +28,7 @@ import java.util.List;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class ProductDTO extends Product {
+public class ProductSkuDTO extends ProductSku {
 	private static final long serialVersionUID = 1L;
 
-	private List<ProductSkuDTO> skuList;
 }

@@ -13,23 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.snailscoder.store.service;
+package com.snailscoder.store.wrapper;
 
-import com.snailscoder.core.mp.base.BaseService;
-import com.snailscoder.store.dto.ProductDTO;
-import com.snailscoder.store.entity.Product;
+import com.snailscoder.core.mp.support.BaseEntityWrapper;
+import com.snailscoder.core.tool.utils.BeanUtil;
+import com.snailscoder.store.entity.ProductSku;
+import com.snailscoder.store.vo.ProductSkuVO;
 
 /**
- * 用户表 服务类
+ * Product包装类,返回视图层所需的字段
  *
  * @author snailscoder
- * @since 2020-08-19
  */
-public interface IProductService extends BaseService<Product> {
+public class ProductSkuWrapper extends BaseEntityWrapper<ProductSku, ProductSkuVO> {
 
-	/**
-	 * 创建商品
-	 * @param productDTO
-	 */
-	boolean addProduct(ProductDTO productDTO);
+	public static ProductSkuWrapper build() {
+		return new ProductSkuWrapper();
+	}
+
+	@Override
+	public ProductSkuVO entityVO(ProductSku sku) {
+		return BeanUtil.copy(sku, ProductSkuVO.class);
+	}
+
 }

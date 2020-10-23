@@ -13,23 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.snailscoder.store.service;
+package com.snailscoder.store.service.impl;
 
-import com.snailscoder.core.mp.base.BaseService;
-import com.snailscoder.store.dto.ProductDTO;
+import com.snailscoder.core.mp.base.BaseServiceImpl;
 import com.snailscoder.store.entity.Product;
+import com.snailscoder.store.entity.ProductSku;
+import com.snailscoder.store.mapper.ProductMapper;
+import com.snailscoder.store.mapper.ProductSkuMapper;
+import com.snailscoder.store.service.IProductService;
+import com.snailscoder.store.service.IProductSkuService;
+import org.springframework.stereotype.Service;
 
 /**
- * 用户表 服务类
+ * 商品SKU表 服务实现类
  *
  * @author snailscoder
  * @since 2020-08-19
  */
-public interface IProductService extends BaseService<Product> {
+@Service
+public class ProductSkuServiceImpl extends BaseServiceImpl<ProductSkuMapper, ProductSku> implements IProductSkuService {
 
-	/**
-	 * 创建商品
-	 * @param productDTO
-	 */
-	boolean addProduct(ProductDTO productDTO);
+
 }
