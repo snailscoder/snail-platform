@@ -100,4 +100,14 @@
         </plugins>
     </build>
 
+    <distributionManagement>
+        <repository>
+            <id>rdc-releases</id>
+            <url>https://repo.rdc.aliyun.com/repository/23588-release-h0KTCT/</url>
+        </repository>
+        <snapshotRepository>
+            <id>rdc-snapshots</id>
+            <url>https://repo.rdc.aliyun.com/repository/23588-snapshot-BSMYuX/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
