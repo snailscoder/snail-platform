@@ -1,35 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <settings>
-<servers>
-    <server>
-        <!--仓库 ID-->
-        <id>snailscoder-core-repo</id>
-        <username>${env.MY_MAVEN_USERNAME}</username>
-        <password>${env.MY_MAVEN_PASSWORD}</password>
-    </server>
-</servers>
-<profiles>
-    <profile>
-        <id>coding</id>
-        <activation>
-            <activeByDefault>true</activeByDefault>
-        </activation>
-        <repositories>
-            <repository>
-                <id>snailscoder-core-repo</id>
-                <name>repo</name>
-                <url>https://snailscoder-maven.pkg.coding.net/repository/core/repo/</url>
-                <releases>
-                    <enabled>true</enabled>
-                </releases>
-                <snapshots>
-                    <enabled>true</enabled>
-                </snapshots>
-            </repository>
-        </repositories>
-    </profile>
-</profiles>
-<activeProfiles>
-    <activeProfile>coding</activeProfile>
-</activeProfiles>
+    <servers>
+        <server>
+            <id>rdc-releases</id>
+            <username>${env.MY_MAVEN_USERNAME}</username>
+            <password>${env.MY_MAVEN_PASSWORD}</password>
+        </server>
+        <server>
+            <id>rdc-snapshots</id>
+            <username>${env.MY_MAVEN_USERNAME}</username>
+            <password>${env.MY_MAVEN_PASSWORD}</password>
+        </server>
+    </servers>
 </settings>
